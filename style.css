@@ -65,4 +65,47 @@ body {
     margin-bottom: 10px;
   }
 
+  /* Add the following CSS rules to style the terms and conditions checkbox and text */
+
+#terms-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  #terms {
+    margin-right: 5px;
+  }
+  
+  .terms-text {
+    font-size: 14px;
+  }
+
+  #loader {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #ff9500; /* Add the desired background color */
+    padding: 20px; /* Add padding for some spacing around the loader */
+    border-radius: 10px; /* Add border radius for rounded corners */
+  }
+  .loader-text {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  @keyframes changeText {
+    0% { content: "Loading.."; }
+    25% { content: "Please wait.."; }
+    50% { content: "Loading.."; }
+    75% { content: "Please wait.."; }
+    100% { content: "Loading.."; }
+  }
+  
+  
+  
 

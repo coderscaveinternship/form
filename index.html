@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internship Application Form</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/country-state-picker/dist/css/csp.min.css">
 </head>
 <body>
   <div class="container">
@@ -60,23 +61,47 @@
 
       <button type="submit">Apply</button>
     </form>
+    <div id="loader">
+      <span class="loader-text">Loading</span>
+    </div>
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzP6_ks4KvXwdt06pGD6sQiicdMA5HTYtcGvR2SnuLuzMvYc4mFtAbgFrp05Qj27pN2/exec'
-        const form = document.forms['applyform']
-      
-        form.addEventListener('submit', e => {
-          e.preventDefault()
-          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbzP6_ks4KvXwdt06pGD6sQiicdMA5HTYtcGvR2SnuLuzMvYc4mFtAbgFrp05Qj27pN2/exec';
+      const form = document.forms['applyform'];
+      const loader = document.getElementById('loader');
+      const loaderText = document.querySelector('.loader-text');
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        loader.style.display = 'block';
+    
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => {
             if (response.ok) {
               window.location.href = "success.html";
             } else {
               throw new Error('Form submission failed!');
             }
           })
-          .catch(error => console.error('Error!', error.message));
+          .catch(error => console.error('Error!', error.message))
+          .finally(() => {
+            loader.style.display = 'none';
+          });
       });
-      </script>
+    
+      // Function to change loader text dynamically
+      function changeLoaderText() {
+        const words = ["Loading..", "Please Wait..", "Loading..", "Please wait.."];
+        let index = 0;
+    
+        setInterval(() => {
+          loaderText.textContent = words[index];
+          index = (index + 1) % words.length;
+        }, 1000); // Change the text every second (adjust as needed)
+      }
+    
+      // Call the function to start changing the loader text
+      changeLoaderText();
+    </script>
   </div>
 </body>
 </html>
