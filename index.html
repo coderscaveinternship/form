@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Application Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" id="logo" alt="Logo">
+    <h1>Internship Application Form</h1><br>
+    <form action="" method="post" name ="applyform">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" autocomplete="off" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" autocomplete="off" required>
+
+      <label for="contact">Contact Number:</label>
+      <input type="tel" id="contact" name="contact" autocomplete="off"  required>
+
+      <label for="whatsapp">WhatsApp Number:</label>
+      <input type="tel" id="whatsapp" name="whatsapp" autocomplete="off" required>
+
+      <label for="college">College/University:</label>
+      <input type="text" id="college" name="college" autocomplete="off" required>
+
+      <label for="state">State:</label>
+      <input type="text" id="state" name="state" autocomplete="off" required>
+
+      <label for="country">Country :</label>
+      <input type="text" id="country" name="country" autocomplete="off" required>
+
+      <label for="domain">Internship Domain:</label>
+      <select id="domain" name="domain" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="Web Development">Web Development</option>
+        <option value=" Python Development">Python Development</option>
+        <option value="Data Science">Data Science</option>
+        <option value="Java Development">Java Development</option>
+        <option value="Android App Development">Android App Development</option>
+      </select>
+
+      <label for="linkedin">LinkedIn Profile Link: </label>
+      <input type="text" id="linkedin" name="linkedin" autocomplete="off" placeholder="https://www.linkedin/profile.com" required>
+
+      <label for="github">GitHub Profile Link:</label>
+      <input type="text" id="github" name="github" autocomplete="off" placeholder="https://www.github/profile.com" required>
+
+      <label for="know-about">Where did you hear about us?</label>
+      <input type="checkbox" id="instagram" name="know-about" value="Instagram">Instagram
+      <input type="checkbox" id="linkedin-source" name="know-about" value="LinkedIn">LinkedIn
+      <input type="checkbox" id="college" name="know-about" value="College">College
+      <input type="checkbox" id="friends" name="know-about" value="Friends">Friends
+      <input type="checkbox" id="other" name="know-about" value="Other">Other<br>
+
+      <button type="submit">Apply</button>
+    </form>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzP6_ks4KvXwdt06pGD6sQiicdMA5HTYtcGvR2SnuLuzMvYc4mFtAbgFrp05Qj27pN2/exec'
+        const form = document.forms['applyform']
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+            if (response.ok) {
+              window.location.href = "success.html";
+            } else {
+              throw new Error('Form submission failed!');
+            }
+          })
+          .catch(error => console.error('Error!', error.message));
+      });
+      </script>
+  </div>
+</body>
+</html>
